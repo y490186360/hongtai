@@ -7,7 +7,7 @@
                 <img src="../assets/logo.png" alt="" />
             </div>
             <!-- 登录框 -->
-            <el-form v-model="loginForm" class="login_form" label-width="0px">
+            <el-form :model="loginForm" ref="LoginFormRef" :rules="loginFormRules" class="login_form" label-width="0px">
                 <!-- 用户名 -->
                 <el-form-item prop="username">
                     <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
@@ -19,7 +19,7 @@
                 <!-- 按钮 -->
                 <el-form-item class="btns">
                     <el-button type="primary">登录</el-button>
-                    <el-button type="info">重置</el-button>
+                    <el-button type="info" @click="resetLoginForm">重置</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -34,7 +34,37 @@ export default {
             loginForm: {
                 username: 'admin',
                 password: '123456'
+            },
+            //表单验证规则
+            loginFormRules: {
+                username: [
+                    { required: true, message: '请输入登录名', trigger: 'blur' },
+                    {
+                        min: 3,
+                        max: 10,
+                        message: '登录名长度在 3 到 10 个字符',
+                        trigger: 'blur'
+                    }
+                ],
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    {
+                        min: 6,
+                        max: 15,
+                        message: '密码长度在 6 到 15 个字符',
+                        trigger: 'blur'
+                    }
+                ]
             }
+        }
+    },
+    //添加行为，
+    methods: {
+        //添加表单重置方法
+        resetLoginForm() {
+            //this=>当前组件对象，其中的属性$refs包含了设置的表单ref
+            //   console.log(this)
+            this.$refs.LoginFormRef.resetFields()
         }
     }
 }
