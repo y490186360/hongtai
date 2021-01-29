@@ -14,22 +14,22 @@
             <el-aside width="200px">
                 <!-- 侧边栏菜单区域 -->
                 <el-menu background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-                    <!-- 一级菜单的模板区域 -->
-                    <el-submenu index="1">
+                    <!-- 一级菜单 -->
+                    <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
                         <!-- 一级菜单的模板区域 -->
                         <template slot="title">
                             <!-- 图标 -->
                             <i class="el-icon-location"></i>
                             <!-- 文本 -->
-                            <span>导航一</span>
+                            <span>{{ item.authName }}</span>
                         </template>
                         <!-- 二级菜单 -->
-                        <el-submenu index="1-4">
+                        <el-submenu :index="subItem.id + ''" v-for="subItem in item.children" :key="subItem.id">
                             <template slot="title">
                                 <!-- 图标 -->
                                 <i class="el-icon-location"></i>
                                 <!-- 文本 -->
-                                <span>子导航一</span>
+                                <span>{{ subItem.authName }}</span>
                             </template>
                         </el-submenu>
                     </el-submenu>
