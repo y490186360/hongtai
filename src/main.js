@@ -18,6 +18,7 @@ axios.interceptors.request.use((config) => {
 // 响应拦截器
 axios.interceptors.response.use((res) => {
     if (res.data.meta.msg === '无效token' && res.data.meta.status === 400) {
+        // Location 对象包含有关当前 URL 的信息
         location.href = '/#/login'
     }
     return res
