@@ -9,4 +9,5 @@ Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+// 代表挂载属性和方法
 Vue.prototype.$message = Message
