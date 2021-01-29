@@ -4,7 +4,7 @@ import { Form, FormItem } from 'element-ui'
 import { Input } from 'element-ui'
 // 导入弹框提示组件
 import { Message } from 'element-ui'
-import { Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem } from 'element-ui'
+import { Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, col, table, TableColumn, Switch } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -19,5 +19,16 @@ Vue.use(Main)
 
 Vue.use(Menu)
 Vue.use(Submenu)
-Vue.use(MenuItemGroup)
+
 Vue.use(MenuItem)
+
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Card)
+Vue.use(Row)
+Vue.use(col)
+
+Vue.use(table)
+Vue.use(TableColumn)
+
+Vue.use(Switch)
