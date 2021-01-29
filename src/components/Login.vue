@@ -18,7 +18,7 @@
                 </el-form-item>
                 <!-- 按钮 -->
                 <el-form-item class="btns">
-                    <el-button type="primary">登录</el-button>
+                    <el-button type="primary" @click="login">登录</el-button>
                     <el-button type="info" @click="resetLoginForm">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -65,6 +65,17 @@ export default {
             //this=>当前组件对象，其中的属性$refs包含了设置的表单ref
             //   console.log(this)
             this.$refs.LoginFormRef.resetFields()
+        },
+        login() {
+            // LoginFormRef 实例对象 validata是方法
+            this.$refs.LoginFormRef.validate(async (valid) => {
+                if (!valid) return
+                const { data: res } = await this.$http.post('login', this.loginForm)
+                if (res.meta.status !== 200) return this.$message.error('登录失败！')
+                this.$message.success('登陆成功')
+                window.sessionStorage.setItem('token', res.data.token)
+                this.$router.push('/home')
+            })
         }
     }
 }
