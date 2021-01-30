@@ -306,6 +306,9 @@ export default {
             }
 
             this.$message.success('删除用户成功！')
+            if (document.querySelectorAll('.el-card tbody tr').length === 1) {
+                this.queryInfo.pagenum = this.queryInfo.pagenum > 1 ? this.queryInfo.pagenum - 1 : 1
+            }
             this.getUserList()
         }
     }
