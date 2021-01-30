@@ -5,6 +5,7 @@ import { Input } from 'element-ui'
 // 导入弹框提示组件
 import { Message } from 'element-ui'
 import { Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, col, table, TableColumn, Switch, Tooltip, Pagination, Dialog } from 'element-ui'
+import { MessageBox } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -40,3 +41,5 @@ Vue.use(Pagination)
 
 // 提示框
 Vue.use(Dialog)
+// 作为方法存在 需要挂载在原型上
+Vue.prototype.$confirm = MessageBox.confirm
