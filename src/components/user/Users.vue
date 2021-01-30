@@ -306,7 +306,9 @@ export default {
             }
 
             this.$message.success('删除用户成功！')
+            // 判断 删除完数据之后 页面没有数据 会获取上一页的数据
             if (document.querySelectorAll('.el-card tbody tr').length === 1) {
+                // 只有大于一的时候才会减 1 因为页码不可能0 页
                 this.queryInfo.pagenum = this.queryInfo.pagenum > 1 ? this.queryInfo.pagenum - 1 : 1
             }
             this.getUserList()
