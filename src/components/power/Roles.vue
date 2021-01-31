@@ -53,7 +53,7 @@
                     <template slot-scope="scope">
                         <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)">编辑</el-button>
                         <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeUserById(scope.row.id)">删除</el-button>
-                        <el-button type="warning" icon="el-icon-setting" size="mini">分配权限</el-button>
+                        <el-button type="warning" icon="el-icon-setting" size="mini" @click="showSetRightDialog">分配权限</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -89,6 +89,15 @@
                 <el-button type="primary" @click="editRolesInfo">确 定</el-button>
             </span>
         </el-dialog>
+
+        <!-- 分配权限的对话框 -->
+        <el-dialog title="分配权限" :visible.sync="setRightDialogVisible" width="50%">
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="setRightDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="setRightDialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -117,7 +126,10 @@ export default {
             editFormRules: {
                 roleName: [{ required: true, message: '请输入角色名称', trigger: 'blur' }],
                 roleDesc: [{ required: true, message: '请输入角色描述', trigger: 'blur' }]
-            }
+            },
+            // 控制分配权限对话框的显示与隐藏
+            setRightDialogVisible: false,
+            rightsList: []
         }
     },
     created() {
@@ -226,6 +238,21 @@ export default {
             // 这样会发生完整渲染，导致收起
             // this.getRolesList()
             role.children = res.data
+        },
+        // 展示分配权限的对话框
+        async showSetRightDialog() {
+            // 获取所有权限的数据
+            const { data: res } = await this.$http.get('rights/tree')
+
+            if (res.meta.status !== 200) {
+                return this.$message.error('获取权限数据失败！')
+            }
+
+            // 把获取到的权限数据保存到 data 中
+            this.reightslist = res.data
+            console.log(this.reightslist)
+
+            this.setRightDialogVisible = true
         }
     }
 }
