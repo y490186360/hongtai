@@ -92,7 +92,8 @@
 
         <!-- 分配权限的对话框 -->
         <el-dialog title="分配权限" :visible.sync="setRightDialogVisible" width="50%">
-            <span>这是一段信息</span>
+            <!-- 树形控件 -->
+            <el-tree :data="rightslist" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys"></el-tree>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="setRightDialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="setRightDialogVisible = false">确 定</el-button>
@@ -129,7 +130,16 @@ export default {
             },
             // 控制分配权限对话框的显示与隐藏
             setRightDialogVisible: false,
-            rightsList: []
+            rightslist: [],
+            // 树形控件的属性绑定对象
+            treeProps: {
+                // label 展示信息(文本)
+                label: 'authName',
+
+                children: 'children'
+            },
+            // 默认选中的节点Id值数组
+            defKeys: [105, 116]
         }
     },
     created() {
@@ -249,8 +259,8 @@ export default {
             }
 
             // 把获取到的权限数据保存到 data 中
-            this.reightslist = res.data
-            console.log(this.reightslist)
+            this.rightslist = res.data
+            console.log(this.rightslist)
 
             this.setRightDialogVisible = true
         }
