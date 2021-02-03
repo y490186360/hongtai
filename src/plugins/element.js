@@ -5,7 +5,7 @@ import { Input } from 'element-ui'
 // 导入弹框提示组件
 import { Message } from 'element-ui'
 import { Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, col, table, TableColumn, Switch, Tooltip, Pagination, Dialog } from 'element-ui'
-import { MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane } from 'element-ui'
+import { MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, Step, Steps } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -57,3 +57,6 @@ Vue.use(Alert)
 
 Vue.use(Tabs)
 Vue.use(TabPane)
+// 步骤条
+Vue.use(Steps)
+Vue.use(Step)
